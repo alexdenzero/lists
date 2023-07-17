@@ -69,7 +69,8 @@ private final Map<String, Employee> employees;
     }
 
     private void validateInput(String firstName, String lastName) {
-        if (!(isAlpha(firstName) && isAlpha(lastName)));
-        throw new InvalidInputException();
+        if (!(isAlpha(firstName) && isAlpha(lastName))) {
+            throw new InvalidInputException();
+        }
     }
 }
