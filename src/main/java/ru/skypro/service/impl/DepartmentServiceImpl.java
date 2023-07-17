@@ -2,7 +2,7 @@ package ru.skypro.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.skypro.employee.model.Employee;
-import ru.skypro.exeption.EmployeeStoragelsFullException;
+import ru.skypro.exception.EmployeeStoragelsFullException;
 import ru.skypro.service.DepartmentService;
 import ru.skypro.service.EmployeeService;
 
@@ -22,6 +22,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     public DepartmentServiceImpl(EmployeeService employeeService) {
         this.employeeService = employeeService;
+    }
+
+    @Override
+    public Integer getDepartmentSalarySum(int departmentId) {
+        return employeeService.findAll().stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .mapToInt(Employee::getSalary)
+                .sum();
     }
 
     @Override
